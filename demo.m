@@ -12,13 +12,13 @@ tenv = trip_rand(sz,randomFun);  tenNorm = trip_norm(tenv,sz);
 tent = trip_full(tenv,sz);
 
 % solver
-% alternating minimization
+% alternating least squares (ALS) minimization
 [estTv_als,info_als] = trip_als(tent,L);
 
 % direct method (GEVD)
 [estTv_gevd,info_gevd] = trip_gevd(tent,L); % info_gevd
 
-% direct method (GEVD)
+% direct method + compression
 [estTv_comp,info_comp] = trip_gevdcomp(tent,L); % info_gevd
 
 figure(1)
