@@ -1,5 +1,9 @@
 function [tcom,U,V,W,info] = ten3_comp(tent,rank)
-% ten3_comp  Compressor of 3D tensors.
+% ten3_comp  Compressor of 3D tensors. Some large-scale matrix computations
+% employ randomized algorithms. 
+%
+% P.-G. Martinsson and J. A. Tropp, Randomized Numerical Linear Algebra 
+%   -- Foundations & Algorithms, Acta Numerica, (2020), pp. 403-572.
 %
 % Yannan Chen, July 12, 2025
 
