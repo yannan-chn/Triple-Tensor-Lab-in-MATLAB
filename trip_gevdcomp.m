@@ -1,4 +1,11 @@
 function [tenv,info] = trip_gevdcomp(tent,rank)
+% trip_gevdcomp  This is a commonly used technique, which can be roughly 
+% divided into three steps :
+%   1. compressing the large-scale low-rank tensor into a smaller (possibly full-rank) tensor; 
+%   2. decomposing the resulting small tensor using a direct method; and 
+%   3. mapping the decomposition results back to the space of the original tensor.
+% 
+% Yannan Chen,  July 12, 2025
 
 [I,J,K] = size(tent);
 if rank*rank > min([I,J,K])
