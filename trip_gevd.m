@@ -24,7 +24,7 @@ end
 L = rank;  M = L;  N = L;
 
 % generalized eigenvalues and associated eigenvectors
-NOS = 5;  weights = randn(NOS,4)+randn(NOS,4)*1i;
+NOS = min([5,I,J,K]);  weights = randn(NOS,4)+randn(NOS,4)*1i;
 
 Tio = squeeze(sum(tent(randperm(I,NOS),:,:).*reshape(weights(:,1),[NOS,1,1]),1));
 Tip = squeeze(sum(tent(randperm(I,NOS),:,:).*reshape(weights(:,2),[NOS,1,1]),1));
