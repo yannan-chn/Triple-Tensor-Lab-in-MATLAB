@@ -5,7 +5,7 @@ function [tenv,info] = trip_gevdcomp(tent,rank)
 %   2. decomposing the resulting small tensor using a direct method; and 
 %   3. mapping the decomposition results back to the space of the original tensor.
 % 
-% Yannan Chen,  July 12, 2025
+% Yannan Chen,  July 20, 2025
 
 [I,J,K] = size(tent);
 if rank*rank > min([I,J,K])
@@ -32,5 +32,5 @@ if min([I,J,K]) > rank*rank*2+1
     fprintf('  Relative error of fitting      ---  %e\n',info.reErr);
     fprintf('  CPU time (second)              ---  %e\n',info.CPUtm);
 else
-    [tenv,info] = trip_gevdcomp(tent,rank);
+    [tenv,info] = trip_gevd(tent,rank);
 end
