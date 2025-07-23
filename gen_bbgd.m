@@ -7,7 +7,16 @@ function [xn,info] = gen_bbgd(fun,xo)
 % Output
 %     xn   ---  solution
 %
-% Yannan Chen    June 3, 2024
+% Reference
+% [1] Jonathan Barzilai and Jonathan M. Borwein, 
+%     Two-point step size gradient methods, 
+%     IMA Journal of Numerical Analysis, 8(1): 141-148, (1988).
+% [2] Yannan Chen, Xinzhen Zhang, Liqun Qi, and Yanwei Xu,
+%     A Barzilai--Borwein gradient algorithm for spatio-temporal internet 
+%     traffic data completion via tensor triple decomposition, 
+%     Journal of Scientific Computing, 88:65, (2021).
+% 
+% Yannan Chen    July 23, 2024
 tic;  fprintf('Barzilai-Borwein gradient descent algorithm ... \n');
 
 % parameters
