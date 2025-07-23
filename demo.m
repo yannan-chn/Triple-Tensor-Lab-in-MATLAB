@@ -12,19 +12,26 @@ tenv = trip_rand(sz,randomFun);  tenNorm = trip_norm(tenv,sz);
 tent = trip_full(tenv,sz);
 
 % solver
-% alternating least squares (ALS) minimization
-[estTv_als,info_als] = trip_als(tent,L);
-
 % direct method (GEVD)
 [estTv_gevd,info_gevd] = trip_gevd(tent,L); % info_gevd
 
 % direct method + compression
-[estTv_comp,info_comp] = trip_gevdcomp(tent,L); % info_gevd
+[estTv_comp,info_comp] = trip_gevdcomp(tent,L);
+
+% alternating least squares (ALS) minimization
+xo = trip_rand(sz,randomFun);
+[estTv_als,info_als] = trip_als(tent,xo);
+
+% Barzilai-Borwein gradient descent algorithm
+myfun = @(z) trip_evfg(z,tent,tenNorm);
+[estTv_bbgd,info_bbgd] = gen_bbgd(myfun,xo);
 
 figure(1)
-semilogy(info_als.CPUtm,info_als.reErr,'bo-',info_gevd.CPUtm,info_gevd.reErr,'rp' ...
-    ,info_comp.CPUtm,info_comp.reErr,'ks','linewidth',2)
+semilogy(info_gevd.CPUtm,info_gevd.reErr,'rp' ...
+    ,info_comp.CPUtm,info_comp.reErr,'ks' ...
+    ,info_als.CPUtm,info_als.reErr,'bo-' ...
+    ,info_bbgd.CPUtm,info_bbgd.reErr/tenNorm,'m+--','linewidth',2)
 xlabel('CPU time (second)');  ylabel('relative error');
-legend('als','gevd','comp+gevd'), grid on
+legend('gevd','comp+gevd','als','bbgd','location','SouthEast'), grid on
 
 
